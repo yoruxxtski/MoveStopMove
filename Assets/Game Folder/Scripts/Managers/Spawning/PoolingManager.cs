@@ -34,7 +34,7 @@ public class PoolingManager : Singleton<PoolingManager>
             Queue<GameObject> objectPool = new Queue<GameObject>();
 
             for (int i = 0; i < pool.size; i++) {
-                GameObject obj = Instantiate(pool.prefab, pool.container);
+                GameObject obj = Instantiate(pool.prefab, pool.container); // 
                 obj.SetActive(false);
                 objectPool.Enqueue(obj);
             }

@@ -57,6 +57,7 @@ public class EnemyComponent : LoadComponent // ! Change the order of script init
         pantContainer.GetComponent<Renderer>().material = pantMaterial;
         // Skin
         skinContainer.GetComponent<Renderer>().material = skinMaterial;
+
         // Weapon
         Instantiate(currentWeapon.weaponObject, weaponContainer.transform);
  
@@ -65,13 +66,14 @@ public class EnemyComponent : LoadComponent // ! Change the order of script init
         activeHairObject = hairContainer.transform.GetChild(randomIndex).gameObject;
         activeHairObject.SetActive(true);
 
+        // change color of level and name
         levelImage.GetComponent<Image>().color = skinMaterial.color;
         nameText.GetComponent<TextMeshProUGUI>().color = skinMaterial.color;
     }
 
     public void DeLoadComponent() {
-
         pantMaterial = null;
+
         skinMaterial = null;
 
         // Remove existing weapon and hair objects
