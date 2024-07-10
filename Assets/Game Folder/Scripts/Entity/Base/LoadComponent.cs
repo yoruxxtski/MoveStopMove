@@ -9,6 +9,7 @@ public class LoadComponent : MonoBehaviour
     public Material pantMaterial;
     public Weapon currentWeapon;
     public GameObject hairGameObject;
+    
 
     [Header("Container for components")] 
     public GameObject hairContainer;

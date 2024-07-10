@@ -3,18 +3,20 @@ using UnityEngine;
 
 public class EnemyComponent : LoadComponent // ! Change the order of script initialization : Component Manager -> EnemyComponent -> Pooling Manager -> Spawn Manager
 {
+    // !!! It seems using instantiate is more efficient in this ? Why
+
+    // TODO : Maybe I should change how I use the weapon . Creating a base weapon and inherit from it ? Will fix this after 
     // --------------------------- Attribute
     private List<Material> skinMaterialsList;
     private List<Material> pantMaterialsList;
     private List<Weapon> weaponListsList;
-    private List<GameObject> hairListsList;
+    private GameObject activeHairObject;
     // --------------------------- Unity Functions
     void Awake()
     {
         skinMaterialsList = ComponentManager.instance.GetSkinsMaterial();
         pantMaterialsList = ComponentManager.instance.GetPantsMaterial();
         weaponListsList = ComponentManager.instance.GetWeaponsList();
-        hairListsList = ComponentManager.instance.GetHairsList(); 
     }
     void OnEnable()
     {
@@ -29,12 +31,8 @@ public class EnemyComponent : LoadComponent // ! Change the order of script init
 
 
         if (weaponListsList != null) {
-            currentWeapon = weaponListsList[Random.Range(0, weaponListsList.Count)];
+            currentWeapon = weaponListsList[Random.Range(0, weaponListsList.Count)]; // * Define current weapon
         } else Debug.Log("EnemyComponent.cs : Can't find weaponListList");
-
-        if (hairListsList != null) {
-            hairGameObject = hairListsList[Random.Range(0, hairListsList.Count)];
-        } else Debug.Log("EnemyComponent.cs : Can't find hairListsList");
 
         LoadComponent();
     }
@@ -52,8 +50,11 @@ public class EnemyComponent : LoadComponent // ! Change the order of script init
         skinContainer.GetComponent<Renderer>().material = skinMaterial;
         // Weapon
         Instantiate(currentWeapon.weaponObject, weaponContainer.transform);
-        // Hair
-        Instantiate(hairGameObject, hairContainer.transform);
+ 
+        // Activate a random hair
+        int randomIndex = Random.Range(0, hairContainer.transform.childCount);
+        activeHairObject = hairContainer.transform.GetChild(randomIndex).gameObject;
+        activeHairObject.SetActive(true);
     }
 
     public void DeLoadComponent() {
@@ -62,15 +63,11 @@ public class EnemyComponent : LoadComponent // ! Change the order of script init
         skinMaterial = null;
 
         // Remove existing weapon and hair objects
-
         foreach (Transform child in weaponContainer.transform)
         {
             Destroy(child.gameObject);
         }
 
-        foreach (Transform child in hairContainer.transform)
-        {
-            Destroy(child.gameObject);
-        }
+        activeHairObject.SetActive(false);
     }
 }
