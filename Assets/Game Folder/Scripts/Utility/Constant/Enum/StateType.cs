@@ -5,5 +5,6 @@ public enum StateType
     IDLE,
     WANDER,
     ATTACK,
+    DEAD,
     NONE
 }
