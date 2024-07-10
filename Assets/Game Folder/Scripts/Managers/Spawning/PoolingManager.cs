@@ -49,7 +49,9 @@ public class PoolingManager : Singleton<PoolingManager>
         }
 
         GameObject objToSpawn = poolDictionary[tag].Dequeue();
+        
         objToSpawn.SetActive(true);
+
         objToSpawn.transform.position = position;
         objToSpawn.transform.rotation = rotation;
 

@@ -21,4 +21,16 @@ public class ComponentManager : Singleton<ComponentManager>
 
     
     // ----------------- USER DEFINED FUNCTIONS
+    public List<Material> GetSkinsMaterial() {
+        return skinMaterials;
+    }
+    public List<Material> GetPantsMaterial() {
+        return pantMaterials;
+    }
+    public List<Weapon> GetWeaponsList() {
+        return weaponLists;
+    }
+    public List<GameObject> GetHairsList() {
+        return hairLists;
+    }
 }

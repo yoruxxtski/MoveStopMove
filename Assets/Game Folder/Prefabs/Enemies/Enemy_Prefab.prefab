@@ -294,6 +294,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2258436554826921410}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4852193192081394041
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8150451154428551431}
+  m_Layer: 0
+  m_Name: Hair Container
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8150451154428551431
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4852193192081394041}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 890474035911609632}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5943376690337514243
 GameObject:
   m_ObjectHideFlags: 0
@@ -666,6 +697,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2258436554826921410}
+  - component: {fileID: 8832315211924909397}
   m_Layer: 0
   m_Name: Enemy_Prefab
   m_TagString: Untagged
@@ -692,6 +724,26 @@ Transform:
   - {fileID: 1243787589055468103}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8832315211924909397
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8971645007102185785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1a558b9ab3032440846b7a8e68087e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skinMaterial: {fileID: 0}
+  pantMaterial: {fileID: 0}
+  currentWeapon: {fileID: 0}
+  hairGameObject: {fileID: 0}
+  hairContainer: {fileID: 4852193192081394041}
+  weaponContainer: {fileID: 8460880474244247555}
+  pantContainer: {fileID: 2075390682541272102}
+  skinContainer: {fileID: 3843374073801346573}
 --- !u!1001 &5123300312159161928
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -758,6 +810,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: -3800467336962686104, guid: 38f9296dc39c27647a0119314baf12a2,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8150451154428551431}
     - targetCorrespondingSourceObject: {fileID: -3220319501169496967, guid: 38f9296dc39c27647a0119314baf12a2,
         type: 3}
       insertIndex: -1
@@ -770,9 +826,27 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 5123300312159161928}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &890474035911609632 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -3800467336962686104, guid: 38f9296dc39c27647a0119314baf12a2,
+    type: 3}
+  m_PrefabInstance: {fileID: 5123300312159161928}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1465567655466525233 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -3220319501169496967, guid: 38f9296dc39c27647a0119314baf12a2,
+    type: 3}
+  m_PrefabInstance: {fileID: 5123300312159161928}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2075390682541272102 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -2606217863934893458, guid: 38f9296dc39c27647a0119314baf12a2,
+    type: 3}
+  m_PrefabInstance: {fileID: 5123300312159161928}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &3843374073801346573 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8237072887224533061, guid: 38f9296dc39c27647a0119314baf12a2,
     type: 3}
   m_PrefabInstance: {fileID: 5123300312159161928}
   m_PrefabAsset: {fileID: 0}
