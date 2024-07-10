@@ -709,6 +709,9 @@ GameObject:
   - component: {fileID: 8832315211924909397}
   - component: {fileID: 3915642398060733814}
   - component: {fileID: 3863404678563753856}
+  - component: {fileID: 5670106447049316014}
+  - component: {fileID: 2817944945169325477}
+  - component: {fileID: 1228941352007111823}
   m_Layer: 0
   m_Name: Enemy_Prefab
   m_TagString: Untagged
@@ -769,12 +772,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2205e0de145700b4bbd11d052d2e3155, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialState: 0
+  initialState: 1
   stateLists:
+  - StateType: 1
+    actions:
+    - {fileID: 5670106447049316014}
+    transitions:
+    - decision: {fileID: 2817944945169325477}
+      trueState: 4
+      falseState: 0
   - StateType: 0
     actions:
     - {fileID: 3863404678563753856}
-    transitions: []
+    transitions:
+    - decision: {fileID: 2817944945169325477}
+      trueState: 1
+      falseState: 4
 --- !u!114 &3863404678563753856
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -787,6 +800,58 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7b24dc82856b2648a2113152ea1758f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5670106447049316014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8971645007102185785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abedd954f1e72564ca735dc1a5ed7feb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agent: {fileID: 1228941352007111823}
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 64
+  minWalkDistance: 5
+  walkPointRange: 10
+--- !u!114 &2817944945169325477
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8971645007102185785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2713985c3df99714eb6483c58f40b4e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!195 &1228941352007111823
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8971645007102185785}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1001 &2036938626539461808
 PrefabInstance:
   m_ObjectHideFlags: 0

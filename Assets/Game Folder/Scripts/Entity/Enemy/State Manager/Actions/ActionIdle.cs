@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class ActionIdle : FSM_Action
@@ -18,7 +19,11 @@ public class ActionIdle : FSM_Action
     public override void Act()
     {
         enemyAnimation.SetIdleAnimation(true);
+        StartCoroutine(ChangeBackToWander());
     }
 
-    
+    IEnumerator ChangeBackToWander() {
+        yield return new WaitForSeconds(2.0f);
+        actionWander.SetIdleState(false);
+    }
 }

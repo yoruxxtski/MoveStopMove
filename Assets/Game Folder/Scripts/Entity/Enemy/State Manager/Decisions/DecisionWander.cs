@@ -17,9 +17,6 @@ public class DecisionWander : FSM_Decision
     }
 
     public bool CheckDecisionWander() {
-        if (actionWander.GetIdleState()) {
-            return false;
-        } 
-        return true;
+        return !actionWander.GetIdleState();
     }
 }
