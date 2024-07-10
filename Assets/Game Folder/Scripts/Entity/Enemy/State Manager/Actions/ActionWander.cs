@@ -15,6 +15,10 @@ public class ActionWander : FSM_Action
     private Vector3 walkPoint;
     private bool walkPointSet;
     [SerializeField] private float walkPointRange;
+
+    // --------------------------------
+    [Header("Check Idle")]
+    private bool turnIdle;
     
     // --------------------------------- Unity Functions
 
@@ -33,6 +37,7 @@ public class ActionWander : FSM_Action
         if (walkPointSet) {
             enemyAnimation.SetIdleAnimation(false);
             agent.SetDestination(walkPoint);
+            turnIdle = true;
         }
 
         Vector3 distanceToWalkPoint = transform.position - walkPoint;    
@@ -51,5 +56,9 @@ public class ActionWander : FSM_Action
         if (Physics.Raycast(walkPoint, - transform.up, 2f, groundMask)) {
             walkPointSet = true;
         }
+    }
+
+    public bool GetIdleState() {
+        return turnIdle;
     }
 }
