@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,6 +16,7 @@ public class ComponentManager : Singleton<ComponentManager>
     // ------------------
     [Header("Hairs")]
     [SerializeField] private List<GameObject> hairLists;
+    [SerializeField] private List<String> nameLists;
 
     // ----------------- UNITY FUNCTIONS
 
@@ -32,5 +34,8 @@ public class ComponentManager : Singleton<ComponentManager>
     }
     public List<GameObject> GetHairsList() {
         return hairLists;
+    }
+    public List<string> GetNameList() {
+        return nameLists;
     }
 }

@@ -1,3 +1,4 @@
+using Microsoft.Unity.VisualStudio.Editor;
 using UnityEngine;
 
 public class LoadComponent : MonoBehaviour
@@ -9,8 +10,9 @@ public class LoadComponent : MonoBehaviour
     public Material pantMaterial;
     public Weapon currentWeapon;
     public GameObject hairGameObject;
+    public GameObject levelImage;
+    public GameObject nameText;
     
-
     [Header("Container for components")] 
     public GameObject hairContainer;
     public GameObject weaponContainer;

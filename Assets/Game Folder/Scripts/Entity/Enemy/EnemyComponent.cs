@@ -1,5 +1,7 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemyComponent : LoadComponent // ! Change the order of script initialization : Component Manager -> EnemyComponent -> Pooling Manager -> Spawn Manager
 {
@@ -10,13 +12,16 @@ public class EnemyComponent : LoadComponent // ! Change the order of script init
     private List<Material> skinMaterialsList;
     private List<Material> pantMaterialsList;
     private List<Weapon> weaponListsList;
+    private List<string> nameLists;
     private GameObject activeHairObject;
+
     // --------------------------- Unity Functions
     void Awake()
     {
         skinMaterialsList = ComponentManager.instance.GetSkinsMaterial();
         pantMaterialsList = ComponentManager.instance.GetPantsMaterial();
         weaponListsList = ComponentManager.instance.GetWeaponsList();
+        nameLists = ComponentManager.instance.GetNameList();
     }
     void OnEnable()
     {
@@ -33,6 +38,10 @@ public class EnemyComponent : LoadComponent // ! Change the order of script init
         if (weaponListsList != null) {
             currentWeapon = weaponListsList[Random.Range(0, weaponListsList.Count)]; // * Define current weapon
         } else Debug.Log("EnemyComponent.cs : Can't find weaponListList");
+
+        if (nameLists != null) {
+            nameText.GetComponent<TextMeshProUGUI>().text = nameLists[Random.Range(0, nameLists.Count)];
+        } else Debug.Log("EnemyComponent.cs : Can't find nameLists");
 
         LoadComponent();
     }
@@ -55,6 +64,9 @@ public class EnemyComponent : LoadComponent // ! Change the order of script init
         int randomIndex = Random.Range(0, hairContainer.transform.childCount);
         activeHairObject = hairContainer.transform.GetChild(randomIndex).gameObject;
         activeHairObject.SetActive(true);
+
+        levelImage.GetComponent<Image>().color = skinMaterial.color;
+        nameText.GetComponent<TextMeshProUGUI>().color = skinMaterial.color;
     }
 
     public void DeLoadComponent() {

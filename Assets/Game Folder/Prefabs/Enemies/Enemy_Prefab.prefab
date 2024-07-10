@@ -617,7 +617,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1243787589055468103
 Transform:
   m_ObjectHideFlags: 0
@@ -749,6 +749,8 @@ MonoBehaviour:
   pantMaterial: {fileID: 0}
   currentWeapon: {fileID: 0}
   hairGameObject: {fileID: 0}
+  levelImage: {fileID: 3595852715662750769}
+  nameText: {fileID: 6997981454017829720}
   hairContainer: {fileID: 4852193192081394041}
   weaponContainer: {fileID: 8460880474244247555}
   pantContainer: {fileID: 2075390682541272102}
