@@ -23,7 +23,7 @@ public class FSM_State
 
         if (transitions.Length <= 0 && transitions == null) return;
 
-        for (int i = 0; i < transitions.Length;i++) {
+        for (int i = 0; i < transitions.Length; i++) {
             bool decideParam = transitions[i].decision.Decide();
             if (decideParam) {
                 enemyController.ChangeState(transitions[i].trueState);

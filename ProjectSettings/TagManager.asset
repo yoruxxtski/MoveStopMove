@@ -14,8 +14,8 @@ TagManager:
   - WhatIsGround
   - Obstacle
   - Wall
-  - 
-  - 
+  - Enemy
+  - Player
   - 
   - 
   - 

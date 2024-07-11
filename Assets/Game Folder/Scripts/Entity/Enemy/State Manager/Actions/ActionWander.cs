@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -7,6 +8,7 @@ public class ActionWander : FSM_Action
     // --------------------------------- Attribute
     [Header("Animation")]
     private EnemyAnimation enemyAnimation;
+
     // ---------------------------------
     [Header("NavMeshAgent Component")]
     [SerializeField] private NavMeshAgent agent;
@@ -18,10 +20,10 @@ public class ActionWander : FSM_Action
     [SerializeField] private float minWalkDistance;
     [SerializeField] private float walkPointRange;
 
-    // --------------------------------
-    [Header("Check Idle")]
-    private bool turnIdle;
-    
+    // ----------------------------------
+    private bool isIdling = false;
+    private bool hasWandered = false;
+
     // --------------------------------- Unity Functions
 
     void Awake()
@@ -29,30 +31,43 @@ public class ActionWander : FSM_Action
         enemyAnimation = GetComponentInChildren<EnemyAnimation>();
         agent = GetComponent<NavMeshAgent>();
     }
-
     // --------------------------------- User Defined Functions
-    
+   
     public override void Act()
     {
-        if (!walkPointSet && !turnIdle) 
-        {
+        if (!walkPointSet && !isIdling) {
             SearchWalkPoint();
         }
-
         if (walkPointSet) {
-            enemyAnimation.SetIdleAnimation(false);
-            agent.SetDestination(walkPoint);
+            StartWandering();
         }
+    }
+    private void StartWandering()
+    {
+        enemyAnimation.SetIdleAnimation(false);
+        agent.SetDestination(walkPoint);
+        Vector3 distanceToWalkPoint = transform.position - walkPoint;
 
-        Vector3 distanceToWalkPoint = transform.position - walkPoint;    
-        // walkPoint reached
-        if (distanceToWalkPoint.magnitude < 1f && !agent.pathPending && agent.remainingDistance <= agent.stoppingDistance) {
+        if (distanceToWalkPoint.magnitude < 1f)
+        {
+            agent.SetDestination(transform.position);
             walkPointSet = false;
-            turnIdle = true;
-        }   
+            isIdling = true;
+            hasWandered = true;
+            StartCoroutine(StartIdling());
+        }
+    }
+
+    private IEnumerator StartIdling()
+    {
+        enemyAnimation.SetIdleAnimation(true);
+        yield return new WaitForSeconds(2.0f);
+        isIdling = false;
+        walkPointSet = false;
     }
 
     public void SearchWalkPoint() {
+        Debug.Log("Find another position");
         // Calculate random direction and distance
         float randomDistance = Random.Range(minWalkDistance, walkPointRange);
         float randomAngle = Random.Range(0, Mathf.PI * 2); // Random angle in radians
@@ -62,15 +77,25 @@ public class ActionWander : FSM_Action
         float randomZ = Mathf.Sin(randomAngle) * randomDistance;
 
         walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
-        if (Physics.Raycast(walkPoint, - transform.up, 2f, groundMask)) {
+
+        if (Physics.Raycast(walkPoint, - transform.up , 2f ,groundMask)) {
             walkPointSet = true;
         }
     }
 
-    public bool GetIdleState() {
-        return turnIdle;
+    // ------------------------------------------ Getter & Setter
+    public bool HasWandered() {
+        return hasWandered;
     }
-    public void SetIdleState(bool value) {
-        turnIdle = value;
+
+    public void ResetWanderedFlag() {
+        hasWandered = false;
+    }
+    public void ResetIdleFlag() {
+        isIdling = false;
+    }
+    public void ResetWanderSetState() {
+        walkPointSet = false;
+        Debug.Log($"WalkPointSet : {walkPointSet}");
     }
 }
