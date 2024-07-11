@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Weapon_Boomerang
   m_EditorClassIdentifier: 
   weaponType: 1
+  tagType: 2
   weaponObject: {fileID: 238153516331574469, guid: ce0550e21ef841d438f42f2367b89d6f,
     type: 3}
   weaponPrefabs: {fileID: 2937941705370649393, guid: 5ca9bca1bef474149a4acb5cb84a761b,

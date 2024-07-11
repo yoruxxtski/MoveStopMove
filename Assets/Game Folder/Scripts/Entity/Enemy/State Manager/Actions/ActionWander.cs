@@ -67,7 +67,6 @@ public class ActionWander : FSM_Action
     }
 
     public void SearchWalkPoint() {
-        Debug.Log("Find another position");
         // Calculate random direction and distance
         float randomDistance = Random.Range(minWalkDistance, walkPointRange);
         float randomAngle = Random.Range(0, Mathf.PI * 2); // Random angle in radians
@@ -96,6 +95,5 @@ public class ActionWander : FSM_Action
     }
     public void ResetWanderSetState() {
         walkPointSet = false;
-        Debug.Log($"WalkPointSet : {walkPointSet}");
     }
 }

@@ -84,4 +84,8 @@ public class EnemyComponent : LoadComponent // ! Change the order of script init
 
         activeHairObject.SetActive(false);
     }
+
+    public Weapon GetCurrentWeapon() {
+        return currentWeapon;
+    }
 }

@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Weapon_Axe
   m_EditorClassIdentifier: 
   weaponType: 1
+  tagType: 1
   weaponObject: {fileID: 3061335129884654600, guid: 111ff119a299c4f4b9287f0000036729,
     type: 3}
   weaponPrefabs: {fileID: -548770279645386092, guid: 01e83fd4e8da65d4fb406d5c69f6a8b2,

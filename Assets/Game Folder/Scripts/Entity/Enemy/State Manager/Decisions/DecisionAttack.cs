@@ -54,11 +54,12 @@ public class DecisionAttack : FSM_Decision
             foreach (Collider enemyCollider in enemiesCollider) {
                 if (enemyCollider.gameObject != this.gameObject) {
                     enemyCollided = enemyCollider.gameObject;
-                    Debug.Log($"Found another enemy : {enemyCollided}");
                     return true;
                 }
             }
         }
+        playerCollided = null;
+        enemyCollided = null;
         return false;
     }
 

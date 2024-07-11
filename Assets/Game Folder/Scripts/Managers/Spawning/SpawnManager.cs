@@ -12,7 +12,7 @@ public class SpawnManager : Singleton<SpawnManager>
     private int numberOfEnemiesLeftToSpawn; // * So luong quai vat con lai co the spawn (so  luong quai vat co the spawn (ban dau = 89))
     // ------------------------------------
     [Header("Spawning Enemies Elements")]
-    [SerializeField] private string enemyTag; 
+    [SerializeField] private TagType enemyTag; 
     [SerializeField] private int spawnRange;
     [SerializeField] private float spawnCheckRadius; // * Check de spawn ben canh se ko co object 
 
@@ -87,4 +87,6 @@ public class SpawnManager : Singleton<SpawnManager>
             numberOfEnemiesLeftToSpawn --;
         }
     }
+
+    
 }

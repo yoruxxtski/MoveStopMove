@@ -10,7 +10,10 @@ public class Weapon : ScriptableObject
     //------------------------------ Attribute
     [Header("Weapon Type")]
     public WeaponType weaponType;
-    
+
+    // -----------------------------
+    [Header("Tag type")]
+    public TagType tagType;
     // -----------------------------
 
     [Header("Weapon Object")]

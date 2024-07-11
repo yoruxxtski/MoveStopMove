@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Weapon_Double-Edged_Axe
   m_EditorClassIdentifier: 
   weaponType: 1
+  tagType: 3
   weaponObject: {fileID: 6557078088772428977, guid: 4c63dedd8b567ff4bb3de989d19d19e9,
     type: 3}
   weaponPrefabs: {fileID: 426964269760034134, guid: bdc0fcd12e2a56446ad81be33bfaaab2,

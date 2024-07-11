@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Weapon_Knife
   m_EditorClassIdentifier: 
   weaponType: 0
+  tagType: 5
   weaponObject: {fileID: 5901042032428111742, guid: 96a321de15224b94b8d00c74b08c090d,
     type: 3}
   weaponPrefabs: {fileID: 4869799924482494504, guid: 5f69c9c686e9e3f49b196b2d05ac283a,
