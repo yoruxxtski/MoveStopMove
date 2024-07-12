@@ -8,6 +8,7 @@ public class ActionWander : FSM_Action
     // --------------------------------- Attribute
     [Header("Animation")]
     private EnemyAnimation enemyAnimation;
+    private Enemy_Stats enemy_Stats;
 
     // ---------------------------------
     [Header("NavMeshAgent Component")]
@@ -29,12 +30,17 @@ public class ActionWander : FSM_Action
     void Awake()
     {
         enemyAnimation = GetComponentInChildren<EnemyAnimation>();
+        enemy_Stats = GetComponentInChildren<Enemy_Stats>();
         agent = GetComponent<NavMeshAgent>();
     }
     // --------------------------------- User Defined Functions
    
     public override void Act()
     {
+        if (!enemy_Stats.GetAliveState()) {
+            return;
+        }
+
         if (!walkPointSet && !isIdling) {
             SearchWalkPoint();
         }

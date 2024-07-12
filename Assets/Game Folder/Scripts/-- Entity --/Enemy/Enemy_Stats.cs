@@ -8,11 +8,22 @@ public class Enemy_Stats : MonoBehaviour
 
     [Header("Alive State")]
     private bool checkAlive;
+    private EnemyController enemyController;
+    private ActionWander actionWander;
 
     // -------------------------------- Unity Functions
     void Awake()
     {
         checkAlive = true;
+        enemyController = GetComponent<EnemyController>();
+        actionWander = GetComponent<ActionWander>();
+    }
+
+    void OnEnable()
+    {
+        checkAlive = true;
+        enemyController.ChangeState(StateType.WANDER);
+        actionWander.ResetIdleFlag();
     }
 
     // -------------------------------- User Defined Functions

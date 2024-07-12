@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Weapon_Hammer
   m_EditorClassIdentifier: 
   weaponType: 0
-  tagType: 4
+  tagType: 5
   weaponObject: {fileID: 1401690656676575891, guid: fc61915759698d04884209128339ccc1,
     type: 3}
   weaponPrefabs: {fileID: 2068285636826211978, guid: 4db73671f0bc63b488e360850117f823,

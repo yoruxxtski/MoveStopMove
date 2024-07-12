@@ -28,9 +28,15 @@ public class Projectile : MonoBehaviour
         } 
 
         if (other.CompareTag("Enemy") && rootParent.CompareTag("Enemy")) {
+
+            if (rootParent.gameObject == other.gameObject) {
+                return;
+            }
+
             PoolingManager.instance.DeactivateWeaponToPool(this.gameObject);
 
             Enemy_Stats enemy_Stats = other.gameObject.GetComponent<Enemy_Stats>();
+            
             enemy_Stats.SetAliveState(false);
             // Change layer of that enemy
             other.gameObject.layer = LayerMask.NameToLayer("Dead");

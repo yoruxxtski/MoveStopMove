@@ -38,6 +38,7 @@ public class ActionAttack : FSM_Action
     {
         // * First enter can't attack ; after wander then I can attack
         if (canAttack) {
+            agent.SetDestination(transform.position);;
             agent.isStopped = true;
             Attack();
         }

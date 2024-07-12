@@ -2,7 +2,8 @@ using UnityEngine;
 
 public enum TagType 
 {
-    Enemy, 
+    Enemy,
+    Arrow, 
     Axe,
     Boomerang,
     Double_Axe,

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Weapon_Candy
   m_EditorClassIdentifier: 
   weaponType: 1
-  tagType: 6
+  tagType: 7
   weaponObject: {fileID: 7638433823287866111, guid: 96c331eb065d81b4095a4d94f3c8be6f,
     type: 3}
   weaponPrefabs: {fileID: -4868943189867672968, guid: 38f71a7fe948f3448832ce56fdc0b43c,

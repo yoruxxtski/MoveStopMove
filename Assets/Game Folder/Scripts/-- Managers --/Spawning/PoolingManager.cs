@@ -85,8 +85,7 @@ public class PoolingManager : Singleton<PoolingManager>
         obj.SetActive(false); // Deactivate the GameObject
 
         // Assuming the enemy GameObject has a component that holds its tag
-        TagType tag = obj.GetComponent<Enemy_Stats>().GetEnemyTag(); // Replace 'Enemy' with your enemy component class
-        obj.GetComponent<Enemy_Stats>().SetAliveState(true);
+        TagType tag = obj.GetComponent<Enemy_Stats>().GetEnemyTag(); 
 
         // Check if the pool dictionary contains the tag type
         if (poolDictionary.ContainsKey(tag)) {
