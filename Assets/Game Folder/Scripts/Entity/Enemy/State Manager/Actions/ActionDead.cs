@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -6,13 +7,14 @@ public class ActionDead : FSM_Action
     // -------------------------- Attribute
     private Enemy_Stats enemy_Stats;
     private EnemyAnimation enemyAnimation;
+    public static event Action OnEnemyDeath;
 
     // -------------------------- Unity Functions
 
     void Awake()
     {
         enemy_Stats = GetComponent<Enemy_Stats>();
-        enemyAnimation = GetComponent<EnemyAnimation>();
+        enemyAnimation = GetComponentInChildren<EnemyAnimation>();
     }
 
     // -------------------------- User Defined Functions
@@ -23,6 +25,8 @@ public class ActionDead : FSM_Action
     }
     IEnumerator ReturnToPool() {
         yield return new WaitForSeconds(2.0f);
-        // PoolingManager.instance.DeactivateToPool(gameObject);
+        PoolingManager.instance.DeActiveEnemyToPool(gameObject);
+        OnEnemyDeath?.Invoke();
     }
+
 }

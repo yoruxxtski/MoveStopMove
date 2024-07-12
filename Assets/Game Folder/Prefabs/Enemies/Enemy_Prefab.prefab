@@ -3807,6 +3807,9 @@ MonoBehaviour:
     - decision: {fileID: 3984258627512915384}
       trueState: 2
       falseState: 4
+    - decision: {fileID: -2480847082859720010}
+      trueState: 4
+      falseState: 3
   - StateType: 2
     actions:
     - {fileID: 1213438063541117213}
@@ -3814,6 +3817,9 @@ MonoBehaviour:
     - decision: {fileID: 3984258627512915384}
       trueState: 4
       falseState: 1
+    - decision: {fileID: -2480847082859720010}
+      trueState: 4
+      falseState: 3
   - StateType: 3
     actions:
     - {fileID: -3277029880698615091}
@@ -3905,6 +3911,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa3c6b5cdc00c734986cccec6f06066c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyTag: 0
+  checkAlive: 0
 --- !u!195 &1228941352007111823
 NavMeshAgent:
   m_ObjectHideFlags: 0

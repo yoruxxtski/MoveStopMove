@@ -21,17 +21,22 @@ public class Projectile : MonoBehaviour
     {
         if (other == null) Debug.Log("Other is null");
 
+        // Deactive the weapon projectile
+
         if (other.CompareTag("Enemy") && rootParent.CompareTag("Player")) {
-            Debug.Log("Player projectile hit enemy");
             
         } 
 
         if (other.CompareTag("Enemy") && rootParent.CompareTag("Enemy")) {
             PoolingManager.instance.DeactivateWeaponToPool(this.gameObject);
-          
+
+            Enemy_Stats enemy_Stats = other.gameObject.GetComponent<Enemy_Stats>();
+            enemy_Stats.SetAliveState(false);
+            // Change layer of that enemy
+            other.gameObject.layer = LayerMask.NameToLayer("Dead");
         }
         if (other.CompareTag("Player")) {
-            PoolingManager.instance.DeactivateWeaponToPool(this.gameObject);
+            
         }
     }
 }

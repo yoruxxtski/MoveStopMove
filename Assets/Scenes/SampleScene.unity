@@ -968,11 +968,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ceb75fc30c5f8f4d8bba20171b5d506, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  totalNumberOfEnemies: 99
+  totalNumberOfEnemies: 1
   amountAliveAtOneTime: 10
   enemyTag: 0
-  spawnRange: 40
-  spawnCheckRadius: 3
+  spawnRange: 36
+  spawnCheckRadius: 1
   obstacleObject:
   - {fileID: 2122868314}
   - {fileID: 1867593967}
@@ -1216,7 +1216,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: c84f0e47d32fc4f4891097387fb184eb,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -8.42
+      value: -25.3
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c84f0e47d32fc4f4891097387fb184eb,
         type: 3}
@@ -1420,7 +1420,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 608040762}
@@ -2391,7 +2391,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: be91617dc9bc9b844b7ffd587782bdc2,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 12.14
+      value: 22.4
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: be91617dc9bc9b844b7ffd587782bdc2,
         type: 3}
@@ -2516,7 +2516,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: be91617dc9bc9b844b7ffd587782bdc2,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 12.14
+      value: 16.86
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: be91617dc9bc9b844b7ffd587782bdc2,
         type: 3}
@@ -3305,7 +3305,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: be91617dc9bc9b844b7ffd587782bdc2,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -15.1
+      value: -24
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: be91617dc9bc9b844b7ffd587782bdc2,
         type: 3}

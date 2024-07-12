@@ -2,14 +2,14 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpawnManager : Singleton<SpawnManager>
+public class EnemySpawnManager : Singleton<EnemySpawnManager>
 {
     //-------------------------------------- Attributes
     [Header("Enemies Elements")]
     [SerializeField] private int totalNumberOfEnemies; // * Tong so luong quai vat (ban dau = 99)
     private int numberOfHumanoidAlive; // * Tong so luong dang con song (phai + 1 vi nguoi cung tinh la alive) (ban dau = 100)
     [SerializeField] private int amountAliveAtOneTime; // * So luong quai vat dc spawn tai 1 thoi diem (tran san luc nao cung se chi co 10 enemies)
-    private int numberOfEnemiesLeftToSpawn; // * So luong quai vat con lai co the spawn (so  luong quai vat co the spawn (ban dau = 89))
+    private int numberOfEnemiesLeftToSpawn; // * So luong quai vat con lai co the spawn (so  luong quai vat co the spawn (ban dau = 99))
     // ------------------------------------
     [Header("Spawning Enemies Elements")]
     [SerializeField] private TagType enemyTag; 
@@ -24,7 +24,8 @@ public class SpawnManager : Singleton<SpawnManager>
     void Start()
     {
         numberOfHumanoidAlive = totalNumberOfEnemies + 1; 
-        numberOfEnemiesLeftToSpawn = totalNumberOfEnemies - amountAliveAtOneTime;
+        numberOfEnemiesLeftToSpawn = totalNumberOfEnemies;
+        amountAliveAtOneTime = (totalNumberOfEnemies > 10) ? 10 : totalNumberOfEnemies;
 
         for (int i = 0; i < amountAliveAtOneTime; i++) {
             SpawnEnemies();
@@ -38,6 +39,15 @@ public class SpawnManager : Singleton<SpawnManager>
 
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, spawnCheckRadius);
+    }
+
+    void OnEnable()
+    {
+        ActionDead.OnEnemyDeath += SpawnEnemies;
+    }
+    void OnDisable()
+    {
+        ActionDead.OnEnemyDeath -= SpawnEnemies;
     }
     // ----------------------------------------- USER DEFINED FUNCTIONS
 
@@ -82,11 +92,21 @@ public class SpawnManager : Singleton<SpawnManager>
 
     public void SpawnEnemies() {
         if (numberOfEnemiesLeftToSpawn > 0) {
+
             Vector3 spawnPos = GetRandomLocation();
-            PoolingManager.instance.SpawnFromPool(enemyTag, spawnPos, Quaternion.identity);
+            GameObject enemy = PoolingManager.instance.SpawnFromPool(enemyTag, spawnPos, Quaternion.identity);
+            enemy.layer = LayerMask.NameToLayer("Enemy");
+
             numberOfEnemiesLeftToSpawn --;
+            Debug.Log(numberOfEnemiesLeftToSpawn);
         }
     }
 
     
+    // -------------------------------------- Getter & Setter
+    public TagType GetEnemyTagType() {
+        return enemyTag;
+    }
+
+
 }
