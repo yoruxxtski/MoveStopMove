@@ -25,7 +25,7 @@ public class EnemySpawnManager : Singleton<EnemySpawnManager>
     {
         numberOfHumanoidAlive = totalNumberOfEnemies + 1; 
         numberOfEnemiesLeftToSpawn = totalNumberOfEnemies;
-        amountAliveAtOneTime = (totalNumberOfEnemies > 10) ? 10 : totalNumberOfEnemies;
+        amountAliveAtOneTime = (totalNumberOfEnemies > amountAliveAtOneTime) ? amountAliveAtOneTime : totalNumberOfEnemies;
 
         for (int i = 0; i < amountAliveAtOneTime; i++) {
             SpawnEnemies();

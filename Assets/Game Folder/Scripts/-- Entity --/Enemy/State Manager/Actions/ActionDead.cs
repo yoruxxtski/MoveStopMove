@@ -5,7 +5,6 @@ using UnityEngine;
 public class ActionDead : FSM_Action
 {
     // -------------------------- Attribute
-    private Enemy_Stats enemy_Stats;
     private EnemyAnimation enemyAnimation;
     public static event Action OnEnemyDeath;
 
@@ -13,7 +12,6 @@ public class ActionDead : FSM_Action
 
     void Awake()
     {
-        enemy_Stats = GetComponent<Enemy_Stats>();
         enemyAnimation = GetComponentInChildren<EnemyAnimation>();
     }
 
