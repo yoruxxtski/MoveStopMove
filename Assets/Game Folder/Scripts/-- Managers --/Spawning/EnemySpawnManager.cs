@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -80,32 +79,39 @@ public class EnemySpawnManager : Singleton<EnemySpawnManager>
 
     public void DeactivateEnemy(GameObject enemy)
     {
+        // Notify ArrowSpawnManager to deactivate the arrow
+        ArrowSpawnManager.instance.DeactivateArrow(enemy);
+
         PoolingManager.instance.DeActiveEnemyToPool(enemy);
         activeEnemies.Remove(enemy);
     }
-   public void SpawnEnemies()
-{
-    if (numberOfEnemiesLeftToSpawn > 0 && activeEnemies.Count < amountAliveAtOneTime)
-    {
-        Vector3 spawnPos = GetRandomLocation();
-        GameObject enemy = PoolingManager.instance.SpawnFromPool(enemyTag, spawnPos, Quaternion.identity);
 
-        if (enemy != null)
+   public void SpawnEnemies()
+    {
+        if (numberOfEnemiesLeftToSpawn > 0 && activeEnemies.Count < amountAliveAtOneTime)
         {
-            enemy.layer = LayerMask.NameToLayer("Enemy");
-            activeEnemies.Add(enemy);
-            numberOfEnemiesLeftToSpawn--;
-            Debug.Log("Spawned enemy. Remaining: " + numberOfEnemiesLeftToSpawn);
+            Vector3 spawnPos = GetRandomLocation();
+            GameObject enemy = PoolingManager.instance.SpawnFromPool(enemyTag, spawnPos, Quaternion.identity);
+
+            if (enemy != null)
+            {
+                enemy.layer = LayerMask.NameToLayer("Enemy");
+                activeEnemies.Add(enemy);
+                numberOfEnemiesLeftToSpawn--;
+                // Debug.Log("Spawned enemy. Remaining: " + numberOfEnemiesLeftToSpawn);
+            }
+            else
+            {
+                Debug.LogWarning("Failed to spawn enemy. Pool might be empty.");
+            }
         }
         else
         {
-            Debug.LogWarning("Failed to spawn enemy. Pool might be empty.");
+            Debug.LogWarning("No more enemies left to spawn or max active enemies reached.");
         }
     }
-    else
-    {
-        Debug.LogWarning("No more enemies left to spawn or max active enemies reached.");
+    // --------------------------------- Getter & Setter
+    public List<GameObject> GetListEnemies() {
+        return activeEnemies;
     }
-}
-
 }

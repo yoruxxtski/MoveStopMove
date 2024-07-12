@@ -94,5 +94,21 @@ public class PoolingManager : Singleton<PoolingManager>
             // Optionally, handle this case (e.g., instantiate a new pool)
         }
     }
+
+     public void DeActiveArrowToPool(GameObject obj) {
+        obj.SetActive(false); // Deactivate the GameObject
+
+        // Assuming the enemy GameObject has a component that holds its tag
+        TagType tag = obj.GetComponent<ArrowMovement>().GetArrowTag(); 
+
+        // Check if the pool dictionary contains the tag type
+        if (poolDictionary.ContainsKey(tag)) {
+            // Enqueue the object back into the correct pool
+            poolDictionary[tag].Enqueue(obj);
+        } else {
+            Debug.LogWarning("Pool for tag type " + tag + " not found.");
+            // Optionally, handle this case (e.g., instantiate a new pool)
+        }
+    }
     
 }
