@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -22,12 +23,12 @@ public class ActionDead : FSM_Action
     {
         agent.SetDestination(transform.position);
         enemyAnimation.SetDeadAnimation(true);
+
         StartCoroutine(ReturnToPool());
     }
     IEnumerator ReturnToPool() {
         yield return new WaitForSeconds(1.5f);
         EnemySpawnManager.instance.DeactivateEnemy(this.gameObject);
-        // EnemySpawnManager.instance.SpawnEnemies();
-        // Debug.Log("Enemy returned to pool.");
+        EnemySpawnManager.instance.SpawnEnemies(); // Spawn a new enemy immediately after deactivation
     }
 }

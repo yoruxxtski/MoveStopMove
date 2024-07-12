@@ -42,27 +42,25 @@ public class PoolingManager : Singleton<PoolingManager>
         }
         Debug.Log("PoolingManager initialized.");
     }
-    public GameObject SpawnFromPool(TagType tag, Vector3 position, Quaternion rotation) {
-        
-        if (!poolDictionary.ContainsKey(tag)) {
-            Debug.Log($"No pool dictionary with tag : {tag}");
+    public GameObject SpawnFromPool(TagType tag, Vector3 position, Quaternion rotation)
+    {
+        if (!poolDictionary.ContainsKey(tag))
+        {
+            Debug.Log($"No pool dictionary with tag: {tag}");
             return null;
         }
 
-        if (poolDictionary[tag].Count == 0) {
+        if (poolDictionary[tag].Count == 0)
+        {
             Debug.Log($"Pool with tag {tag} is empty. Consider increasing your pool size.");
-            return null;
+            return null; // Not enough objects in the pool
         }
 
         GameObject objToSpawn = poolDictionary[tag].Dequeue();
-        
         objToSpawn.SetActive(true);
-
         objToSpawn.transform.position = position;
         objToSpawn.transform.rotation = rotation;
-
-        poolDictionary[tag].Enqueue(objToSpawn);
-        return objToSpawn;
+        return objToSpawn; // Don't enqueue here; handle in deactivation
     }
 
     public void DeactivateWeaponToPool(GameObject obj) {

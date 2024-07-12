@@ -1026,7 +1026,7 @@ MonoBehaviour:
   - tag: 0
     prefab: {fileID: 8971645007102185785, guid: b337d08ac9b3919409c93945b5533311,
       type: 3}
-    size: 20
+    size: 15
     container: {fileID: 289302370}
   - tag: 2
     prefab: {fileID: 842894755395865693, guid: 01e83fd4e8da65d4fb406d5c69f6a8b2, type: 3}

@@ -20,10 +20,8 @@ public class EnemySpawnManager : Singleton<EnemySpawnManager>
     //--------------------------------------
     [Header("Objects Not To Spawn On")]
     [SerializeField] private List<GameObject> obstacleObject;
-
     //--------------------------------------
     private List<GameObject> activeEnemies = new List<GameObject>(); // Track active enemies
-    private int enemiesToDeactivate = 0; // Track number of enemies being deactivated
 
     //----------------------------------------- UNITY FUNCTIONS
     void Start()
@@ -80,62 +78,34 @@ public class EnemySpawnManager : Singleton<EnemySpawnManager>
         return spawnPosition;
     }
 
-    public void SpawnEnemies()
+    public void DeactivateEnemy(GameObject enemy)
     {
-        if (numberOfEnemiesLeftToSpawn > 0)
-        {
-            Vector3 spawnPos = GetRandomLocation();
-            GameObject enemy = PoolingManager.instance.SpawnFromPool(enemyTag, spawnPos, Quaternion.identity);
+        PoolingManager.instance.DeActiveEnemyToPool(enemy);
+        activeEnemies.Remove(enemy);
+    }
+   public void SpawnEnemies()
+{
+    if (numberOfEnemiesLeftToSpawn > 0 && activeEnemies.Count < amountAliveAtOneTime)
+    {
+        Vector3 spawnPos = GetRandomLocation();
+        GameObject enemy = PoolingManager.instance.SpawnFromPool(enemyTag, spawnPos, Quaternion.identity);
 
-            if (enemy != null)
-            {
-                enemy.layer = LayerMask.NameToLayer("Enemy");
-                activeEnemies.Add(enemy); // Add to active list
-                numberOfEnemiesLeftToSpawn--;
-                Debug.Log("Spawned enemy. Remaining: " + numberOfEnemiesLeftToSpawn);
-            }
-            else
-            {
-                Debug.LogWarning("Failed to spawn enemy. Pool might be empty.");
-            }
+        if (enemy != null)
+        {
+            enemy.layer = LayerMask.NameToLayer("Enemy");
+            activeEnemies.Add(enemy);
+            numberOfEnemiesLeftToSpawn--;
+            Debug.Log("Spawned enemy. Remaining: " + numberOfEnemiesLeftToSpawn);
         }
         else
         {
-            Debug.LogWarning("No more enemies left to spawn.");
+            Debug.LogWarning("Failed to spawn enemy. Pool might be empty.");
         }
     }
-
-    public void DeactivateEnemy(GameObject gameObject)
+    else
     {
-        activeEnemies.Remove(gameObject); // Remove from active list
-        PoolingManager.instance.DeActiveEnemyToPool(gameObject);
-        enemiesToDeactivate++;
-
-        // Check and spawn only once after all enemies have been deactivated
-        StartCoroutine(HandleDeactivation());
+        Debug.LogWarning("No more enemies left to spawn or max active enemies reached.");
     }
-
-    private IEnumerator HandleDeactivation()
-    {
-        yield return new WaitForEndOfFrame(); // Wait for end of frame to ensure all deactivations are processed
-
-        int currentAliveEnemies = activeEnemies.Count; // Use the active enemies list
-        
-        int enemiesToSpawn = amountAliveAtOneTime - currentAliveEnemies;
-
-        // Limit the number of enemies to spawn based on the remaining count
-        enemiesToSpawn = Mathf.Min(enemiesToSpawn, numberOfEnemiesLeftToSpawn);
-
-        if (enemiesToSpawn > 0)
-        {
-            Debug.Log("Checking to spawn: Current alive enemies: " + currentAliveEnemies + ", Enemies to spawn: " + enemiesToSpawn);
-            for (int i = 0; i < enemiesToSpawn; i++)
-            {
-                SpawnEnemies();
-            }
-        }
-
-        enemiesToDeactivate = 0; // Reset after handling deactivation
-    }
+}
 
 }
