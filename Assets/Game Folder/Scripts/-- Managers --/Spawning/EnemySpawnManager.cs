@@ -21,10 +21,9 @@ public class EnemySpawnManager : Singleton<EnemySpawnManager>
     [Header("Objects Not To Spawn On")]
     [SerializeField] private List<GameObject> obstacleObject;
 
-    // -------------------------------------
-    [Header("Dealing with multiple enemies death at the same time")]
-    private Queue<int> spawnQueue = new Queue<int>(); // Queue to track enemies to spawn
-    private bool isSpawning = false; // Flag to prevent multiple spawn calls
+    //--------------------------------------
+    private List<GameObject> activeEnemies = new List<GameObject>(); // Track active enemies
+    private int enemiesToDeactivate = 0; // Track number of enemies being deactivated
 
     //----------------------------------------- UNITY FUNCTIONS
     void Start()
@@ -36,54 +35,46 @@ public class EnemySpawnManager : Singleton<EnemySpawnManager>
         for (int i = 0; i < amountAliveAtOneTime; i++) {
             SpawnEnemies();
         }
-
-        StartCoroutine(SpawnCheckRoutine());
     }
-    
+
     void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, spawnRange);
-
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, spawnCheckRadius);
     }
-
-    // ----------------------------------------- USER DEFINED FUNCTIONS
 
     public Vector3 GetRandomLocation() {
         Vector3 spawnPosition = Vector3.zero;
         bool foundValidSpawn = false;
 
-        // Try up to 100 times to find a valid spawn position
         for (int attempt = 0; attempt < 100; attempt++)
         {
             float posX = UnityEngine.Random.Range(-spawnRange, spawnRange);
             float posY = UnityEngine.Random.Range(-spawnRange, spawnRange);
             spawnPosition = new Vector3(posX, 0, posY);
 
-            // Check if this position is far enough from obstacles
             bool farEnough = true;
             foreach (GameObject obstacle in obstacleObject)
             {
                 if (Vector3.Distance(spawnPosition, obstacle.transform.position) < spawnCheckRadius)
                 {
                     farEnough = false;
-                    break; // No need to check further obstacles if one is too close
+                    break;
                 }
             }
 
             if (farEnough)
             {
                 foundValidSpawn = true;
-                break; // Found a valid spawn position, exit the loop
+                break;
             }
         }
 
-        // If after 100 attempts no valid spawn position was found, use the last attempt position
         if (!foundValidSpawn)
         {
-            Debug.LogWarning("Could not find a valid spawn position after 100 attempts. Using the last attempt position.");
+            Debug.LogWarning("Could not find a valid spawn position after 100 attempts.");
         }
 
         return spawnPosition;
@@ -99,6 +90,7 @@ public class EnemySpawnManager : Singleton<EnemySpawnManager>
             if (enemy != null)
             {
                 enemy.layer = LayerMask.NameToLayer("Enemy");
+                activeEnemies.Add(enemy); // Add to active list
                 numberOfEnemiesLeftToSpawn--;
                 Debug.Log("Spawned enemy. Remaining: " + numberOfEnemiesLeftToSpawn);
             }
@@ -115,37 +107,35 @@ public class EnemySpawnManager : Singleton<EnemySpawnManager>
 
     public void DeactivateEnemy(GameObject gameObject)
     {
+        activeEnemies.Remove(gameObject); // Remove from active list
         PoolingManager.instance.DeActiveEnemyToPool(gameObject);
+        enemiesToDeactivate++;
+
+        // Check and spawn only once after all enemies have been deactivated
+        StartCoroutine(HandleDeactivation());
     }
 
-    private IEnumerator SpawnCheckRoutine()
+    private IEnumerator HandleDeactivation()
     {
-        while (true)
+        yield return new WaitForEndOfFrame(); // Wait for end of frame to ensure all deactivations are processed
+
+        int currentAliveEnemies = activeEnemies.Count; // Use the active enemies list
+        
+        int enemiesToSpawn = amountAliveAtOneTime - currentAliveEnemies;
+
+        // Limit the number of enemies to spawn based on the remaining count
+        enemiesToSpawn = Mathf.Min(enemiesToSpawn, numberOfEnemiesLeftToSpawn);
+
+        if (enemiesToSpawn > 0)
         {
-            // Check if there are no enemies left to spawn
-            if (numberOfEnemiesLeftToSpawn <= 0)
+            Debug.Log("Checking to spawn: Current alive enemies: " + currentAliveEnemies + ", Enemies to spawn: " + enemiesToSpawn);
+            for (int i = 0; i < enemiesToSpawn; i++)
             {
-                Debug.Log("No more enemies left to spawn. Stopping SpawnCheckRoutine.");
-                yield break; // Stop the coroutine
+                SpawnEnemies();
             }
-            int currentAliveEnemies = GameObject.FindGameObjectsWithTag(enemyTag.ToString()).Length; // return active array with tags
-            if (currentAliveEnemies < amountAliveAtOneTime)
-            {
-                int enemiesToSpawn = amountAliveAtOneTime - currentAliveEnemies;
-                Debug.Log("SpawnCheckRoutine: Current alive enemies: " + currentAliveEnemies + ", Enemies to spawn: " + enemiesToSpawn);
-                for (int i = 0; i < enemiesToSpawn && numberOfEnemiesLeftToSpawn > 0; i++)
-                {
-                    SpawnEnemies();
-                }
-            }
-            yield return new WaitForSeconds(1.0f); // Check every second
         }
-    }
-    
-    // -------------------------------------- Getter & Setter
-    public TagType GetEnemyTagType()
-    {
-        return enemyTag;
+
+        enemiesToDeactivate = 0; // Reset after handling deactivation
     }
 
 }

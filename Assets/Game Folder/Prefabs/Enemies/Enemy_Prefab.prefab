@@ -3808,7 +3808,7 @@ MonoBehaviour:
       trueState: 2
       falseState: 4
     - decision: {fileID: 4984911122840053361}
-      trueState: 4
+      trueState: 3
       falseState: 3
   - StateType: 2
     actions:
