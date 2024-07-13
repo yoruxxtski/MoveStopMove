@@ -268,6 +268,7 @@ GameObject:
   - component: {fileID: 86676010}
   - component: {fileID: 86676011}
   - component: {fileID: 86676012}
+  - component: {fileID: 86676013}
   m_Layer: 10
   m_Name: -- Player --
   m_TagString: Player
@@ -344,6 +345,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 84
   m_CollisionDetection: 0
+--- !u!114 &86676013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 86676009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: beb7bd7d0824cf2449db2807c61d1f78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dynamicJoystick: {fileID: 2104561588}
+  speed: 5
 --- !u!1 &102311319
 GameObject:
   m_ObjectHideFlags: 0
@@ -1910,6 +1925,7 @@ GameObject:
   - component: {fileID: 963194228}
   - component: {fileID: 963194227}
   - component: {fileID: 963194226}
+  - component: {fileID: 963194229}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1991,6 +2007,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 26.08, y: 0, z: 0}
+--- !u!114 &963194229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963194225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcfd373f8301bd14195ea74e300594d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  goal: {fileID: 86676009}
+  offset: {x: 0, y: 10.64, z: -21.71}
+  smoothSpeed: 0.25
+  desiredPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &968370189
 GameObject:
   m_ObjectHideFlags: 0
@@ -2897,6 +2929,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -6057140222963153312, guid: 38f9296dc39c27647a0119314baf12a2,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: af2cf7787f062f4428a4e2c6abf049b2, type: 2}
     - target: {fileID: -6008434836159022525, guid: 38f9296dc39c27647a0119314baf12a2,
         type: 3}
       propertyPath: m_Layer
@@ -3248,7 +3285,11 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 304849250}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: -927199367670048503, guid: 38f9296dc39c27647a0119314baf12a2,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1607156167}
   m_SourcePrefab: {fileID: 100100000, guid: 38f9296dc39c27647a0119314baf12a2, type: 3}
 --- !u!4 &1597093947 stripped
 Transform:
@@ -3262,6 +3303,24 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1597093946}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1607156165 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: 38f9296dc39c27647a0119314baf12a2,
+    type: 3}
+  m_PrefabInstance: {fileID: 1597093946}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1607156167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1607156165}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ac4a57eabe88ee46a8f3ed531e036da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1613844566
 GameObject:
   m_ObjectHideFlags: 0
@@ -3758,6 +3817,18 @@ MonoBehaviour:
   - Blue
   - Purple
   - Pink
+--- !u!114 &2104561588 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8135886326569738823, guid: 56fae09712773584fb63896d473a98ee,
+    type: 3}
+  m_PrefabInstance: {fileID: 744998944}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba0d0e7a039f526499c356a3c5cd6d3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2122868314 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: be91617dc9bc9b844b7ffd587782bdc2,

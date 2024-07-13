@@ -45,12 +45,15 @@ public class ArrowSpawnManager : Singleton<ArrowSpawnManager>
         ArrowStats arrowStats = arrow.GetComponent<ArrowStats>();
         
         if (arrowStats != null) {
+
             EnemyComponent enemyComponent = enemy.GetComponent<EnemyComponent>();
             Enemy_Stats enemy_Stats = enemy.GetComponent<Enemy_Stats>();
             
             arrowStats.GetArrowImage().GetComponent<Image>().color = enemyComponent.skinMaterial.color;
             arrowStats.GetLevelImage().GetComponent<Image>().color = enemyComponent.skinMaterial.color;
+
             arrowStats.GetArrowLevel().text = $"{enemy_Stats.GetLevel()}";
+            
         }
 
         if (arrowMovement != null)

@@ -23,7 +23,9 @@ public class ArrowMovement : MonoBehaviour
             transform.position = cappedScreenPos;
             
             // Calculate the direction to the enemy
-            Vector3 direction = targetEnemy.transform.position - Camera.main.transform.position;
+             // Calculate the direction to the enemy relative to the screen center
+            Vector3 screenCenter = new Vector3(Screen.width / 2, Screen.height / 2, 0);
+            Vector3 direction = screenPosition - screenCenter;
 
             direction.z = 0; // Keep it in the 2D plane
 
