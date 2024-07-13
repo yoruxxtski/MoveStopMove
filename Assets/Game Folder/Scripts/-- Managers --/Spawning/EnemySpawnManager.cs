@@ -126,9 +126,6 @@ public class EnemySpawnManager : Singleton<EnemySpawnManager>
             if (enemy != null)
             {
                 Enemy_Stats enemy_Stats = enemy.GetComponent<Enemy_Stats>();
-
-
-                Debug.Log(player_Stats.GetLevel());
                 
                 enemy_Stats.SetLevelAccordingToPlayer(player_Stats.GetLevel());
 
