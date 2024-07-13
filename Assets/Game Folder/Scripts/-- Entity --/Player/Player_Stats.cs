@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 
@@ -10,6 +11,7 @@ public class Player_Stats : MonoBehaviour
     [SerializeField] private GameObject levelComponent;
     private PlayerAnimation playerAnimation;
     private PlayerAttack playerAttack;
+    public static event Action OnPlayerDeath;
 
     private bool isAlive;
 
@@ -30,10 +32,12 @@ public class Player_Stats : MonoBehaviour
         isAlive = false;
         this.gameObject.GetComponent<Collider>().enabled = false;
         playerAnimation.SetDeadAnimation(true);
+        this.gameObject.GetComponent<PlayerComponent>().SetDeadSkinMaterial();
         transform.position += new Vector3(0, 0.45f, 0);
         groundCircle.SetActive(false);
         levelComponent.SetActive(false);
         this.gameObject.layer = LayerMask.NameToLayer("Dead");
+        OnPlayerDeath?.Invoke();
     }
 
     public void IncreaseLevel(int otherLevel) {

@@ -23,6 +23,7 @@ public class EnemySpawnManager : Singleton<EnemySpawnManager>
     private List<GameObject> activeEnemies = new List<GameObject>(); // Track active enemies
 
     private Player_Stats player_Stats;
+    public static event Action OnEnemyDeath;
 
     //----------------------------------------- UNITY FUNCTIONS
 
@@ -51,6 +52,15 @@ public class EnemySpawnManager : Singleton<EnemySpawnManager>
         Gizmos.DrawWireSphere(transform.position, spawnCheckRadius);
     }
 
+    void OnEnable()
+    {
+        Player_Stats.OnPlayerDeath += PlayerDeactive;
+    }
+    void OnDisable() 
+    {
+        Player_Stats.OnPlayerDeath -= PlayerDeactive;
+    }
+    
     public Vector3 GetRandomLocation() {
         Vector3 spawnPosition = Vector3.zero;
         bool foundValidSpawn = false;
@@ -94,6 +104,15 @@ public class EnemySpawnManager : Singleton<EnemySpawnManager>
         PoolingManager.instance.DeActiveEnemyToPool(enemy);
 
         activeEnemies.Remove(enemy);
+
+        numberOfHumanoidAlive --;
+
+        OnEnemyDeath?.Invoke();
+    }
+
+    public void PlayerDeactive() {
+        numberOfHumanoidAlive --;
+        OnEnemyDeath?.Invoke();
     }
 
    public void SpawnEnemies()
@@ -135,5 +154,9 @@ public class EnemySpawnManager : Singleton<EnemySpawnManager>
     // --------------------------------- Getter & Setter
     public List<GameObject> GetListEnemies() {
         return activeEnemies;
+    }
+    
+    public int GetNumberOfHumanoidAlive() {
+        return numberOfHumanoidAlive;
     }
 }

@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class PlayerComponent : LoadComponent
 {   
+ 
     void Start()
     {
         LoadComponent();
@@ -23,5 +24,10 @@ public class PlayerComponent : LoadComponent
 
     public Weapon GetCurrentWeapon() {
         return currentWeapon;
+    }
+
+    public void SetDeadSkinMaterial() {
+        float darkenFactor = 0.5f;
+        skinContainer.GetComponent<Renderer>().material.color = skinMaterial.color * darkenFactor;
     }
 }
