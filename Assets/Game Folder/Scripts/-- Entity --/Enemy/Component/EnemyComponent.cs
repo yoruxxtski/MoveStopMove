@@ -55,6 +55,7 @@ public class EnemyComponent : LoadComponent // ! Change the order of script init
     public void LoadComponent() {
         // Pant 
         pantContainer.GetComponent<Renderer>().material = pantMaterial;
+        
         // Skin
         skinContainer.GetComponent<Renderer>().material = skinMaterial;
 

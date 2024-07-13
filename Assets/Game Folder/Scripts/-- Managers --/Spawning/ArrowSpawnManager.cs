@@ -8,10 +8,23 @@ public class ArrowSpawnManager : Singleton<ArrowSpawnManager>
     [SerializeField] private TagType arrowType;
     private List<GameObject> activeEnemies;
     private Dictionary<GameObject, GameObject> enemyArrowMap = new Dictionary<GameObject, GameObject>();
+    // Reference to the Player_Stats component
+    private Player_Stats playerStats;
 
     // ---------------------------------- Unity Functions
+    void Start()
+    {
+        playerStats = FindObjectOfType<Player_Stats>();
+    }
     void Update()
     {
+        // Check if player is alive
+        if (playerStats == null || !playerStats.GetAliveState())
+        {
+            DeactivateAllArrows();
+            return;
+        }
+
         activeEnemies = EnemySpawnManager.instance.GetListEnemies();
         
         // Check for each active enemy
@@ -53,7 +66,6 @@ public class ArrowSpawnManager : Singleton<ArrowSpawnManager>
             arrowStats.GetLevelImage().GetComponent<Image>().color = enemyComponent.skinMaterial.color;
 
             arrowStats.GetArrowLevel().text = $"{enemy_Stats.GetLevel()}";
-            
         }
 
         if (arrowMovement != null)
@@ -72,5 +84,14 @@ public class ArrowSpawnManager : Singleton<ArrowSpawnManager>
             PoolingManager.instance.DeActiveArrowToPool(arrow);
             enemyArrowMap.Remove(enemy); // Remove the entry from the map
         }
+    }
+
+    private void DeactivateAllArrows()
+    {
+        foreach (var arrow in enemyArrowMap.Values)
+        {
+            PoolingManager.instance.DeActiveArrowToPool(arrow);
+        }
+        enemyArrowMap.Clear();
     }
 }

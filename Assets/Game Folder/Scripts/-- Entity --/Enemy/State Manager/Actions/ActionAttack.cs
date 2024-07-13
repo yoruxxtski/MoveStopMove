@@ -57,6 +57,7 @@ public class ActionAttack : FSM_Action
         Weapon currentWeapon = enemyComponent.GetCurrentWeapon();
 
         TagType tag = currentWeapon.tagType;
+        
         if (this.gameObject != null) {
             
             GameObject projectile = PoolingManager.instance.SpawnFromPool(tag, attackPosition.position, Quaternion.identity);

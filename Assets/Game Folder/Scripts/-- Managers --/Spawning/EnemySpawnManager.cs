@@ -22,7 +22,16 @@ public class EnemySpawnManager : Singleton<EnemySpawnManager>
     //--------------------------------------
     private List<GameObject> activeEnemies = new List<GameObject>(); // Track active enemies
 
+    private Player_Stats player_Stats;
+
     //----------------------------------------- UNITY FUNCTIONS
+
+    protected override void Awake()
+    {
+        base.Awake();
+        player_Stats = FindObjectOfType<Player_Stats>();
+        if (player_Stats == null) Debug.Log("Player Stats is null in enemySpawnManager");
+    }
     void Start()
     {
         numberOfHumanoidAlive = totalNumberOfEnemies + 1; 
@@ -83,6 +92,7 @@ public class EnemySpawnManager : Singleton<EnemySpawnManager>
         ArrowSpawnManager.instance.DeactivateArrow(enemy);
 
         PoolingManager.instance.DeActiveEnemyToPool(enemy);
+
         activeEnemies.Remove(enemy);
     }
 
@@ -91,12 +101,24 @@ public class EnemySpawnManager : Singleton<EnemySpawnManager>
         if (numberOfEnemiesLeftToSpawn > 0 && activeEnemies.Count < amountAliveAtOneTime)
         {
             Vector3 spawnPos = GetRandomLocation();
+
             GameObject enemy = PoolingManager.instance.SpawnFromPool(enemyTag, spawnPos, Quaternion.identity);
 
             if (enemy != null)
             {
+                Enemy_Stats enemy_Stats = enemy.GetComponent<Enemy_Stats>();
+
+
+                Debug.Log(player_Stats.GetLevel());
+                
+                enemy_Stats.SetLevelAccordingToPlayer(player_Stats.GetLevel());
+
+                enemy_Stats.OriginalTranform();
+
                 enemy.layer = LayerMask.NameToLayer("Enemy");
+
                 activeEnemies.Add(enemy);
+                
                 numberOfEnemiesLeftToSpawn--;
                 // Debug.Log("Spawned enemy. Remaining: " + numberOfEnemiesLeftToSpawn);
             }

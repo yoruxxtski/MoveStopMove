@@ -10,6 +10,7 @@ public class ActionDead : FSM_Action
 
     // public static event Action OnEnemyDeath;
     [SerializeField] private NavMeshAgent agent;
+    [SerializeField] private GameObject levelComponent;
 
     // -------------------------- Unity Functions
 
@@ -23,7 +24,8 @@ public class ActionDead : FSM_Action
     {
         agent.SetDestination(transform.position);
         enemyAnimation.SetDeadAnimation(true);
-
+        if (levelComponent.activeSelf)
+        levelComponent.SetActive(false);
         StartCoroutine(ReturnToPool());
     }
     IEnumerator ReturnToPool() {

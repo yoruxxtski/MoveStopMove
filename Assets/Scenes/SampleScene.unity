@@ -269,6 +269,9 @@ GameObject:
   - component: {fileID: 86676011}
   - component: {fileID: 86676012}
   - component: {fileID: 86676013}
+  - component: {fileID: 86676014}
+  - component: {fileID: 86676015}
+  - component: {fileID: 86676017}
   m_Layer: 10
   m_Name: -- Player --
   m_TagString: Player
@@ -359,6 +362,60 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dynamicJoystick: {fileID: 2104561588}
   speed: 5
+--- !u!114 &86676014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 86676009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a6912733aad63b4891a6c6e7ffea6d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackRange: 6.22
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 512
+  attackPosition: {fileID: 1219258196}
+--- !u!114 &86676015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 86676009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cf00c4a1a9d000488f39c3c357da8a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skinMaterial: {fileID: 2100000, guid: da9dcdd344495864fad7ea0ce8e2a31f, type: 2}
+  pantMaterial: {fileID: 0}
+  currentWeapon: {fileID: 11400000, guid: 2d933f8f288a11d4193c07a2db97ec45, type: 2}
+  hairGameObject: {fileID: 0}
+  levelImage: {fileID: 494045645}
+  nameText: {fileID: 102311319}
+  hairContainer: {fileID: 153562595}
+  weaponContainer: {fileID: 304849249}
+  pantContainer: {fileID: 1459989088}
+  skinContainer: {fileID: 660525228}
+--- !u!114 &86676017
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 86676009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84e7f3041bfd2d740bae26feb34fc0e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelText: {fileID: 12937107}
+  groundCircle: {fileID: 1415129375}
+  levelComponent: {fileID: 1070908944}
 --- !u!1 &102311319
 GameObject:
   m_ObjectHideFlags: 0
@@ -983,10 +1040,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ceb75fc30c5f8f4d8bba20171b5d506, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  totalNumberOfEnemies: 9
+  totalNumberOfEnemies: 12
   amountAliveAtOneTime: 9
   enemyTag: 0
-  spawnRange: 16
+  spawnRange: 30
   spawnCheckRadius: 1
   obstacleObject:
   - {fileID: 2122868314}
@@ -1308,6 +1365,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: c84f0e47d32fc4f4891097387fb184eb,
     type: 3}
   m_PrefabInstance: {fileID: 635073597}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &660525228 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8237072887224533061, guid: 38f9296dc39c27647a0119314baf12a2,
+    type: 3}
+  m_PrefabInstance: {fileID: 1597093946}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &693093925
 GameObject:
@@ -1926,6 +1989,7 @@ GameObject:
   - component: {fileID: 963194227}
   - component: {fileID: 963194226}
   - component: {fileID: 963194229}
+  - component: {fileID: 963194230}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2023,6 +2087,18 @@ MonoBehaviour:
   offset: {x: 0, y: 10.64, z: -21.71}
   smoothSpeed: 0.25
   desiredPosition: {x: 0, y: 0, z: 0}
+--- !u!114 &963194230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963194225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cc7625aa52838c43b9cacf6c358ffc4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &968370189
 GameObject:
   m_ObjectHideFlags: 0
@@ -2334,7 +2410,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 703972121}
@@ -2607,6 +2683,12 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1553847221}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1459989088 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -2606217863934893458, guid: 38f9296dc39c27647a0119314baf12a2,
+    type: 3}
+  m_PrefabInstance: {fileID: 1597093946}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1495807453
 PrefabInstance:
   m_ObjectHideFlags: 0

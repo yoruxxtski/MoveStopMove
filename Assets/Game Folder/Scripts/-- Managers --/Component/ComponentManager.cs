@@ -16,6 +16,7 @@ public class ComponentManager : Singleton<ComponentManager>
     // ------------------
     [Header("Hairs")]
     [SerializeField] private List<GameObject> hairLists;
+    
     [SerializeField] private List<String> nameLists;
 
     // ----------------- UNITY FUNCTIONS

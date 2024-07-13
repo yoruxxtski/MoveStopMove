@@ -24,6 +24,23 @@ public class Projectile : MonoBehaviour
         // Deactive the weapon projectile
 
         if (other.CompareTag("Enemy") && rootParent.CompareTag("Player")) {
+
+            PoolingManager.instance.DeactivateWeaponToPool(this.gameObject);
+
+             // -- Other : nguoi bi nem
+
+            Enemy_Stats enemy_Stats = other.gameObject.GetComponent<Enemy_Stats>();
+            
+            enemy_Stats.SetAliveState(false);
+            
+            enemy_Stats.gameObject.transform.position += new Vector3(0, 0.5f, 0);
+
+            // Change layer of that enemy
+            other.gameObject.layer = LayerMask.NameToLayer("Dead");
+
+            Player_Stats player_Stats = rootParent.gameObject.GetComponent<Player_Stats>();
+
+            player_Stats.IncreaseLevel(enemy_Stats.GetLevel());
             
         } 
 
@@ -35,14 +52,34 @@ public class Projectile : MonoBehaviour
 
             PoolingManager.instance.DeactivateWeaponToPool(this.gameObject);
 
+            // -- Other : nguoi bi nem
+
             Enemy_Stats enemy_Stats = other.gameObject.GetComponent<Enemy_Stats>();
             
             enemy_Stats.SetAliveState(false);
+            
+            enemy_Stats.gameObject.transform.position += new Vector3(0, 0.5f, 0);
+
             // Change layer of that enemy
             other.gameObject.layer = LayerMask.NameToLayer("Dead");
+
+            // -- Root Parent = nguoi nem
+
+            Enemy_Stats enemy_Stats_Root = rootParent.gameObject.GetComponent<Enemy_Stats>();
+
+            enemy_Stats_Root.IncreaseLevel(enemy_Stats.GetLevel());
         }
         if (other.CompareTag("Player")) {
-            
+
+            PoolingManager.instance.DeactivateWeaponToPool(this.gameObject);
+
+            Player_Stats player_Stats = other.gameObject.GetComponent<Player_Stats>();
+
+            player_Stats.IsDead();
+
+            Enemy_Stats enemy_Stats = rootParent.gameObject.GetComponent<Enemy_Stats>();
+
+            enemy_Stats.IncreaseLevel(player_Stats.GetLevel());
         }
     }
 }
