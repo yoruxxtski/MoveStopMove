@@ -252,6 +252,7 @@ GameObject:
   - component: {fileID: 6769491258263523672}
   - component: {fileID: 4438549403631926116}
   - component: {fileID: -5553768805683056439}
+  - component: {fileID: 1667961314317510744}
   m_Layer: 5
   m_Name: Arrow Component
   m_TagString: Untagged
@@ -303,6 +304,21 @@ MonoBehaviour:
   tagType: 1
   rotateArrow: {fileID: 2778122370468682685}
   targetEnemy: {fileID: 0}
+--- !u!114 &1667961314317510744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6789075915373585816}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a905d1e057384364080fb69dfec50a10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelImage: {fileID: 2867786695144039685}
+  arrowImage: {fileID: 2993779065706605389}
+  arrowLevel: {fileID: 6396813583000043377}
 --- !u!1 &7970800545854273583
 GameObject:
   m_ObjectHideFlags: 0

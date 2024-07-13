@@ -21,9 +21,10 @@ public class ArrowMovement : MonoBehaviour
 
             // Move the arrow to the clamped screen position
             transform.position = cappedScreenPos;
-
+            
             // Calculate the direction to the enemy
             Vector3 direction = targetEnemy.transform.position - Camera.main.transform.position;
+
             direction.z = 0; // Keep it in the 2D plane
 
             // Calculate the angle for rotation

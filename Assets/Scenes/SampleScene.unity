@@ -968,7 +968,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ceb75fc30c5f8f4d8bba20171b5d506, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  totalNumberOfEnemies: 99
+  totalNumberOfEnemies: 9
   amountAliveAtOneTime: 9
   enemyTag: 0
   spawnRange: 16
@@ -2062,6 +2062,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1070908945}
+  - component: {fileID: 1070908946}
   m_Layer: 0
   m_Name: Level Component
   m_TagString: Untagged
@@ -2085,6 +2086,18 @@ Transform:
   - {fileID: 1613844567}
   m_Father: {fileID: 86676010}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1070908946
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1070908944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 064b38d7a3b20b048b3353a4b4ae6488, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1096633173
 GameObject:
   m_ObjectHideFlags: 0

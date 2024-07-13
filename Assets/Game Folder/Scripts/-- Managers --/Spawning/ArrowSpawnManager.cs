@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ArrowSpawnManager : Singleton<ArrowSpawnManager>
 {
@@ -35,10 +36,23 @@ public class ArrowSpawnManager : Singleton<ArrowSpawnManager>
     private void SpawnArrow(GameObject enemy)
     {
         Vector3 spawnPos = new Vector3(50, 0, 0); // Adjust Y position as needed
+        
         GameObject arrow = PoolingManager.instance.SpawnFromPool(arrowType, spawnPos, Quaternion.identity);
 
         // Set the target enemy for the arrow movement
         ArrowMovement arrowMovement = arrow.GetComponent<ArrowMovement>();
+        
+        ArrowStats arrowStats = arrow.GetComponent<ArrowStats>();
+        
+        if (arrowStats != null) {
+            EnemyComponent enemyComponent = enemy.GetComponent<EnemyComponent>();
+            Enemy_Stats enemy_Stats = enemy.GetComponent<Enemy_Stats>();
+            
+            arrowStats.GetArrowImage().GetComponent<Image>().color = enemyComponent.skinMaterial.color;
+            arrowStats.GetLevelImage().GetComponent<Image>().color = enemyComponent.skinMaterial.color;
+            arrowStats.GetArrowLevel().text = $"{enemy_Stats.GetLevel()}";
+        }
+
         if (arrowMovement != null)
         {
             arrowMovement.SetTargetEnemy(enemy);

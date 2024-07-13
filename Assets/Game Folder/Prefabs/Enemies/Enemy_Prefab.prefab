@@ -3599,6 +3599,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5419818587078539736}
+  - component: {fileID: 1127656035721999557}
   m_Layer: 0
   m_Name: Level Component
   m_TagString: Untagged
@@ -3622,6 +3623,18 @@ Transform:
   - {fileID: 3319769142350897809}
   m_Father: {fileID: 2258436554826921410}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1127656035721999557
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8705209248560674349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 064b38d7a3b20b048b3353a4b4ae6488, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8830247519988942645
 GameObject:
   m_ObjectHideFlags: 0
@@ -3913,6 +3926,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyTag: 0
+  levelText: {fileID: 2795836841735845681}
 --- !u!195 &1228941352007111823
 NavMeshAgent:
   m_ObjectHideFlags: 0

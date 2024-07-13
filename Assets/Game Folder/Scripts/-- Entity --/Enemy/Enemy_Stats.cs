@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 public class Enemy_Stats : MonoBehaviour
@@ -10,6 +11,10 @@ public class Enemy_Stats : MonoBehaviour
     private bool checkAlive;
     private EnemyController enemyController;
     private ActionWander actionWander;
+
+    [Header("Level")]
+    private int level;
+    [SerializeField] private TextMeshProUGUI levelText;
 
     // -------------------------------- Unity Functions
     void Awake()
@@ -24,10 +29,14 @@ public class Enemy_Stats : MonoBehaviour
         checkAlive = true;
         enemyController.ChangeState(StateType.WANDER);
         actionWander.ResetIdleFlag();
+        SetRandomLevel();
     }
 
     // -------------------------------- User Defined Functions
-
+    public void SetRandomLevel() {
+        level = Random.Range(0, 3);
+        levelText.text = $"{level}";
+    }
     // -------------------------------- Getter & Setter
     public bool GetAliveState() {
         return checkAlive;
@@ -37,5 +46,8 @@ public class Enemy_Stats : MonoBehaviour
     }
     public TagType GetEnemyTag() {
         return enemyTag;
+    }
+    public int GetLevel() {
+        return level;
     }
 }
