@@ -1,0 +1,15 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Zombie City
+  m_Controller: {fileID: 9100000, guid: c82de5b9b8517f1479dba5e29b1d35dd, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 6af464916ad6fb149b6b8d346764d3ae, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: a6919921a094e1e4d8ad1a6957ca3019, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 207ac825d9ecdf640bf9e3f04b064399, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 7fe4ae54e916dea43980b20b7a53830d, type: 2}
