@@ -19,7 +19,6 @@ public class TransparentObstacles : MonoBehaviour
     void Start()
     {
         detectionRange = playerAttack.GetAttackRange();
-        Debug.Log(detectionRange);
     }
 
     void Update()

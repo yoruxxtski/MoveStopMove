@@ -53,7 +53,7 @@ public class Enemy_Stats : MonoBehaviour
         if (level == 0) return;
         else {
             for (int i = 0; i < level; i++) {
-                 this.gameObject.transform.localScale *= 1.1f;
+                this.gameObject.transform.localScale *= 1.1f;
             }
         }
     }
@@ -68,8 +68,13 @@ public class Enemy_Stats : MonoBehaviour
         }   
     }
 
+    public void ResetTransform() {
+        this.gameObject.transform.localScale = new Vector3(1, 1, 1);
+        decisionAttack.SetAttackRange(decisionAttack.GetOriginalAttackRange());
+    }
+
     public void IncreaseLevel(int otherLevel) {
-        if (level < otherLevel) {
+        if (level <= otherLevel) {
             level ++;
             IncreaseRange();
             levelText.text = $"{level}";

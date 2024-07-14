@@ -3768,7 +3768,7 @@ Transform:
   m_GameObject: {fileID: 8971645007102185785}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 5.97}
+  m_LocalPosition: {x: 0, y: 0.45, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3903,6 +3903,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   attackRange: 6.23
+  originalAttackRange: 6.23
 --- !u!114 &4984911122840053361
 MonoBehaviour:
   m_ObjectHideFlags: 0

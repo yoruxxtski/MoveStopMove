@@ -2,15 +2,25 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    private float speed = 7f;
+    private float speed = 8f;
     public Vector3 direction {get; set;}
     public Vector3 playerTransform {get; set;}
     public float attackRange{get; set;}
     public GameObject rootParent {get; set;}
     public Weapon currentWeapon;
+
+    void Start()
+    {
+        
+        transform.localRotation = Quaternion.Euler(90f, 0f, 0f);
+    }
     void Update()
     {
         transform.position += direction * speed * Time.deltaTime;
+
+        if (currentWeapon.weaponType == WeaponType.Rotate) {
+            transform.Rotate(- Vector3.forward, 5);
+        }
 
         if (Vector3.Distance(this.transform.position, playerTransform) > (attackRange + 2)) {
             PoolingManager.instance.DeactivateWeaponToPool(this.gameObject);
@@ -75,7 +85,7 @@ public class Projectile : MonoBehaviour
 
             Player_Stats player_Stats = other.gameObject.GetComponent<Player_Stats>();
 
-            player_Stats.IsDead();
+            player_Stats.IsDead(rootParent);
 
             Enemy_Stats enemy_Stats = rootParent.gameObject.GetComponent<Enemy_Stats>();
 

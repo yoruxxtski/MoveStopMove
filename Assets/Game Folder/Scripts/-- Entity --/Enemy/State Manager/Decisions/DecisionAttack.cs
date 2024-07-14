@@ -9,6 +9,8 @@ public class DecisionAttack : FSM_Decision
     // ---------------------------
     [Header("Elements")]
     [SerializeField] private float attackRange;
+    [SerializeField] private float originalAttackRange;
+
     // ---------------------------
     [Header("GameObject Collided")]
     private GameObject playerCollided;
@@ -65,6 +67,9 @@ public class DecisionAttack : FSM_Decision
 
      public float GetAttackRange() {
         return attackRange;
+    }
+    public float GetOriginalAttackRange() {
+        return originalAttackRange;
     }
     public void SetAttackRange(float value) {
         attackRange = value;

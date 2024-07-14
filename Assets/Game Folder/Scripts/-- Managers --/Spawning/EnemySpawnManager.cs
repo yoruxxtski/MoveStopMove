@@ -110,7 +110,7 @@ public class EnemySpawnManager : Singleton<EnemySpawnManager>
         OnEnemyDeath?.Invoke();
     }
 
-    public void PlayerDeactive() {
+    public void PlayerDeactive(GameObject enemy) {
         numberOfHumanoidAlive --;
         OnEnemyDeath?.Invoke();
     }
@@ -128,6 +128,8 @@ public class EnemySpawnManager : Singleton<EnemySpawnManager>
                 Enemy_Stats enemy_Stats = enemy.GetComponent<Enemy_Stats>();
                 
                 enemy_Stats.SetLevelAccordingToPlayer(player_Stats.GetLevel());
+
+                enemy_Stats.ResetTransform();
 
                 enemy_Stats.OriginalTranform();
 

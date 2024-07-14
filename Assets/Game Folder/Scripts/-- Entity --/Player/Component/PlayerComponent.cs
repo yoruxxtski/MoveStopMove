@@ -5,7 +5,8 @@ using UnityEngine.UI;
 
 public class PlayerComponent : LoadComponent
 {   
- 
+    [SerializeField] private ParticleSystem levelUpEffect;
+
     void Start()
     {
         LoadComponent();
@@ -20,6 +21,8 @@ public class PlayerComponent : LoadComponent
 
         levelImage.GetComponent<Image>().color = skinMaterial.color;
         nameText.GetComponent<TextMeshProUGUI>().color = skinMaterial.color;
+        ParticleSystemRenderer renderer = levelUpEffect.GetComponent<ParticleSystemRenderer>();
+        renderer.material = skinMaterial;
     }
 
     public Weapon GetCurrentWeapon() {
@@ -29,5 +32,9 @@ public class PlayerComponent : LoadComponent
     public void SetDeadSkinMaterial() {
         float darkenFactor = 0.5f;
         skinContainer.GetComponent<Renderer>().material.color = skinMaterial.color * darkenFactor;
+    }
+
+    public ParticleSystem GetParticle() {
+        return levelUpEffect;
     }
 }
