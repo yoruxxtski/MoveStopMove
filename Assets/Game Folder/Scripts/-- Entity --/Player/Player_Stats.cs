@@ -31,6 +31,20 @@ public class Player_Stats : MonoBehaviour
         height = GetComponent<CapsuleCollider>().height;
     }
 
+    void OnEnable()
+    {
+        GameStateManager.StartGamePlayer += TurnOnComponent;
+    }
+    void OnDisable()
+    {
+        GameStateManager.StartGamePlayer -= TurnOnComponent;
+    }
+
+    public void TurnOnComponent() {
+        groundCircle.SetActive(true);
+        levelComponent.SetActive(true);
+    }
+
     public void IsDead(GameObject enemy) {
         isAlive = false;
         this.gameObject.GetComponent<Collider>().enabled = false;

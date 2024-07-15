@@ -21,8 +21,8 @@ public class EndGameManager : Singleton<EndGameManager>
     } 
 
     public void PlayerKilledPanelUpdate(GameObject enemy) {
-        deadPanel.SetActive(true);
         inGamePanel.SetActive(false);
+        deadPanel.SetActive(true);
 
         EnemyComponent enemy_Component = enemy.GetComponent<EnemyComponent>();
         if (enemy_Component == null) Debug.Log("Not found enemy that kill");

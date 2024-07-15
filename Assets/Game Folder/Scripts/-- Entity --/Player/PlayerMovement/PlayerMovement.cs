@@ -29,7 +29,7 @@ public class PlayerMovement : MonoBehaviour
     }
     void FixedUpdate()
     {
-        if (player_Stats.GetAliveState()) 
+        if (player_Stats.GetAliveState() && EnemySpawnManager.instance.GetNumberOfHumanoidAlive() > 1) 
         Move();
     }
     public void ReadMovement() {

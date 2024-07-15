@@ -14,11 +14,14 @@ public class InGameManager : Singleton<InGameManager>
     [SerializeField] private Image onVibrationImage;
     [SerializeField] private Image offVibrationImage;
     [SerializeField] private GameObject settingPanel;
+    [SerializeField] private GameObject dragPanel;
+    [SerializeField] private GameObject inGamePanel;
 
     [Header("Texts")]
     [SerializeField] private TextMeshProUGUI aliveNumberText;
     [Header("Height Text")]
     [SerializeField] private GameObject heightObject;
+
 
     // ------------------------- Unity Functions
     void Start()
@@ -77,5 +80,8 @@ public class InGameManager : Singleton<InGameManager>
         heightObject.SetActive(false);
     }
 
-    
+    public void DetectClick() {
+        dragPanel.SetActive(false);
+        inGamePanel.GetComponent<Button>().enabled = false;
+    }
 }

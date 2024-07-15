@@ -38,7 +38,9 @@ public class EnemySpawnManager : Singleton<EnemySpawnManager>
         numberOfHumanoidAlive = totalNumberOfEnemies + 1; 
         numberOfEnemiesLeftToSpawn = totalNumberOfEnemies;
         amountAliveAtOneTime = Math.Min(totalNumberOfEnemies, amountAliveAtOneTime);
+    }
 
+    public void SpawnInitialEnemies() {
         for (int i = 0; i < amountAliveAtOneTime; i++) {
             SpawnEnemies();
         }
